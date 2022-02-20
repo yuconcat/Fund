@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box {
+        width: 1400px;
+        height: 700px;
+        background-color: whitesmoke;
+    }
+</style>
+<body>
+
+<div class="box"></div>  <!--准备具有大小的DOM容器-->
+
+<script src="../js/echarts.min.js"></script>  <!--引入echarts文件-->
+
+<script>
+    //echarts.init(dom容器);  初始化echarts实例对象 myChart
+    var myChart = echarts.init(document.querySelector(".box"));
+
+    //指定配置项和数据
+    option = {
+        // title 设置标题
+        title: {
+            text: '折线图堆叠 112233'
+        },
+        // tooltip 设置提示框
+        tooltip: {
+            // trigger触发方式 （ axis以坐标轴方式触发，还有item方式）
+            trigger: 'axis'
+        },
+        //图例组件（标题右边的）（要同时改两个地方才能生效）
+        legend: {
+            //如果series里有name值，则legend里面的data可以删掉
+            data: ['邮件与营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        },
+        //工具箱组件（右上角的下载符号，可以提供图片下载等功能）
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        //网格配置（范围：坐标轴内  作用：控制图标坐标轴大小）
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true  //显示刻度标签
+        },
+        //设置x轴
+        xAxis: {
+            type: 'category',  //设置坐标轴类型
+            //category 类目轴，适用于离散的类目数据。
+            //为该类型时类目数据可自动从 series.data 或 dataset.source 中取，
+            //或者可通过 xAxis.data 设置类目数据。
+
+            boundaryGap: false,  //设置坐标轴和图表是否有缝隙
+
+            //x轴显示的信息
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        //设置y轴
+        yAxis: {
+            type: 'value'
+        },
+        //设置线条的颜色
+        color: ["red", "blue", "pink", "green", "black"],
+        //系列图标设置：决定显示那种类型的图表
+        series: [
+            {
+                name: '邮件与营销',
+                type: 'line',    //图线的类型
+                data: [120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name: '联盟广告',
+                type: 'line',
+                data: [220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name: '视频广告',
+                type: 'line',
+                data: [150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name: '直接访问',
+                type: 'line',
+                data: [320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+                name: '搜索引擎',
+                type: 'line',
+                data: [820, 932, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+    //把配置项option给echarts对象
+    myChart.setOption(option);
+
+</script>
+</body>
+</html>
